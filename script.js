@@ -55,12 +55,26 @@ function drawHill(context, x, w, h) {
   context.stroke();
 }
 
-canvas = document.getElementById("dragon");
-context = canvas.getContext("2d");
+function animateDragon(speed) {
+  canvas = document.getElementById("dragon");
+  context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  drawGrass(context);
+  drawDragon(context, dragonX, up);
+  drawHill(context, positionX, 40, 35);
+  drawHill(context, positionX + 300, 60, 20);
+  drawHill(context, positionX + 400, 20, 40);
 
-drawGrass(context);
-drawDragon(context, dragonX, up);
-drawHill(context, 400, 40, 35);
+  positionX -= speed;
 
-// context.drawImage(dragonImage, 100,160);
-// context.drawImage(dragon, 100, 160);
+  // context.drawImage(dragonImage, 100,160);
+  // context.drawImage(dragon, 100, 160);
+}
+
+function start() {
+  timer = setInterval(animateDragon, 10, speed);
+}
+
+// animateDragon(speed);
+
+start();
