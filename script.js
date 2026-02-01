@@ -44,7 +44,7 @@ function drawGrass(context) {
 }
 
 function drawHill(context, x, w, h) {
-  //   checkCollision(dragon_x, x, w);
+  checkCollision(dragonX, x, w);
   context.beginPath();
   context.strokeStyle = "#000";
   context.lineWidth = 1;
@@ -71,10 +71,29 @@ function animateDragon(speed) {
   // context.drawImage(dragon, 100, 160);
 }
 
+function checkCollision(coord1, coord2, width) {
+  if (coord1 >= coord2 && coord1 <= coord2 + width) {
+    alert("Collision");
+    stop();
+    return;
+  }
+}
+
 function start() {
+  stop();
   timer = setInterval(animateDragon, 10, speed);
+}
+
+function stop() {
+  clearInterval(timer);
 }
 
 // animateDragon(speed);
 
 start();
+
+function jump(event) {
+   console.log(directions[event.key]) 
+}
+
+addEventListener("keydown", jump)
